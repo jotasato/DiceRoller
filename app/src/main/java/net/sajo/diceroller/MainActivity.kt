@@ -3,7 +3,6 @@ package net.sajo.diceroller
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
 
+        val countButton: Button = findViewById(R.id.count_button)
+
+        countButton.setOnClickListener { countUp() }
+
 
     }
 
@@ -23,6 +26,20 @@ class MainActivity : AppCompatActivity() {
         val resultText: TextView = findViewById(R.id.result_text)
         val randomInt = (1..6).random()
         resultText.text = randomInt.toString()
+    }
 
+    private fun countUp() {
+        var resultText: TextView = findViewById(R.id.result_text)
+
+        if (resultText.text == "Hello World!") {
+            resultText.text = "1"
+        } else {
+            var resultInt = resultText.text.toString().toInt()
+            if (resultInt < 6) {
+                resultInt++
+                resultText.text = resultInt.toString()
+
+            }
+        }
     }
 }
